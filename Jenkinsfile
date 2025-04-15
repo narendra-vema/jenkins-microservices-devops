@@ -37,5 +37,8 @@ pipeline {
         unstable {
             echo 'This will run if the pipeline is unstable.'
         }
+		changed {
+			echo 'This will run if the pipeline changes state.'
+		}
     }
 }
