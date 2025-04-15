@@ -60,6 +60,28 @@ pipeline {
             // Add your deployment steps here
             }
         }
+
+		stage('create image') {
+			steps {
+			   // "docker build -t myapp:latest ." // Build a Docker image
+               
+			   script {
+				// sh "mvn package -Dmaven.test.skip=true" // Package the application using Maven, skipping tests
+ 				  sh "mvn package -DskipTests" // Package the application using Maven, skipping tests
+				   def image = docker.build("narendra230/currency-exchange-devops:${env.BUILD_ID}", "-f Dockerfile .") // Build a Docker image with a specific tag
+				   echo "Docker image built: ${image}"
+			   }							
+			}
+		}
+		stage('Push image') {
+			steps {
+				echo 'Pushing Docker image...'
+				docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') { // Authenticate with Docker Hub
+					//sh "docker push narendra230/currency-exchange-devops:${env.BUILD_ID}" // Push the Docker image to Docker Hub
+				    docker.image("narendra230/currency-exchange-devops:${env.BUILD_ID}").push() // Push the Docker image to Docker Hub
+				}
+			}
+		}
     } 
 	
 	post {
