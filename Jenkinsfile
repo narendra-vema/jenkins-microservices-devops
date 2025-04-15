@@ -1,11 +1,20 @@
 node {
+	agent any
+	// Define the pipeline stages
+	stages {
 	stage('Build') {
-		echo "Build"
+		echo 'Building...'
+		// Add your build steps here
 	}
+	
 	stage('Test') {
-		echo "Test"
+		echo 'Testing...'
+		// Add your test steps here
 	}
+	
 	stage('integration Test') {
-		echo "Test"
+		echo 'Integration Testing...'
+		// Add your deployment steps here
+	}
 	}
 }
