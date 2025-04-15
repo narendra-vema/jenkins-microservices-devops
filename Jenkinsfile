@@ -12,7 +12,8 @@ pipeline {
         stage('Build') {
             steps {
                 //echo 'Building...'
-				sh "mvn --version" // Print Maven version
+				//sh "mvn --version" // Print Maven version
+				sh "node --version" // Print Node.js version
             // Add your build steps here
             }
         }
