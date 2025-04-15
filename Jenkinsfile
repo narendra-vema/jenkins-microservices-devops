@@ -1,7 +1,6 @@
 pipeline {
     //agent any
 	agent {
-		label 'docker' // Use a specific agent with the label 'docker'
 		docker {
 			image 'maven:3.6.3-jdk-8' // Use a Docker image with Maven and JDK 8
 			// args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount the Docker socket for Docker-in-Docker
