@@ -19,7 +19,8 @@ pipeline {
             steps {
                 //echo 'Building...'
 				sh "mvn --version" // Print Maven version
-				sh "node --version" // Print Node.js version
+				//sh "node --version" // Print Node.js version
+				sh "docker --version" // Print Docker version
 				echo 'Building...'
 				echo '$PATH'
 				echo 'BUILD_NUMBER is: ' + env.BUILD_NUMBER
