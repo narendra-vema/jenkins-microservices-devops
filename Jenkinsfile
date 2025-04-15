@@ -76,12 +76,14 @@ pipeline {
 		stage('Push image') {
 			steps {
 				echo 'Pushing Docker image...'
+				script { 
 				docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') { // Authenticate with Docker Hub
 					//sh "docker push narendra230/currency-exchange-devops:${env.BUILD_ID}" // Push the Docker image to Docker Hub
 				    //docker.image("narendra230/currency-exchange-devops:${env.BUILD_ID}").push() // Push the Docker image to Docker Hub
 		 			image.push() // Push the Docker image to Docker Hub	
 					image.push('latest') // Push the Docker image with the 'latest' tag
 					echo "Docker image pushed: ${image}"	
+				}
 				}
 			}
 		}
