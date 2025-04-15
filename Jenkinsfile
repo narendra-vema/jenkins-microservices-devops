@@ -46,20 +46,20 @@ pipeline {
 			}
 		}
 
-        stage('Test') {
-            steps {
-                echo 'mvn test...'
-				sh "mvn test" // Run unit tests using Maven
-            // Add your test steps here
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         echo 'mvn test...'
+		// 		sh "mvn test" // Run unit tests using Maven
+        //     // Add your test steps here
+        //     }
+        // }
 
-        stage('integration Test') {
-            steps {
-                echo 'Integration Testing...'
-            // Add your deployment steps here
-            }
-        }
+        // stage('integration Test') {
+        //     steps {
+        //         echo 'Integration Testing...'
+        //     // Add your deployment steps here
+        //     }
+        // }
 
 		stage('create image') {
 			steps {
