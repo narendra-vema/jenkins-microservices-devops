@@ -1,19 +1,34 @@
 pipeline {
-    //agent any
-	agent {
-		docker {
-			//image 'maven:3.6.3-jdk-8' // Use a Docker image with Maven and JDK 8
-			image 'node:14' // Use a Docker image with Node.js 14
-			// args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount the Docker socket for Docker-in-Docker
-		}
-	}
+    agent any
+	// agent {
+	// 	docker {
+	// 		//image 'maven:3.6.3-jdk-8' // Use a Docker image with Maven and JDK 8
+	// 		image 'node:14' // Use a Docker image with Node.js 14
+	// 		// args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount the Docker socket for Docker-in-Docker
+	// 	}
+	// }
     // Define the pipeline stages
     stages {
         stage('Build') {
             steps {
                 //echo 'Building...'
 				//sh "mvn --version" // Print Maven version
-				sh "node --version" // Print Node.js version
+				//sh "node --version" // Print Node.js version
+				echo 'Building...'
+				echo '$PATH'
+				echo 'BUILD_NUMBER is: ' + env.BUILD_NUMBER
+				echo 'JOB_NAME is: ' + env.JOB_NAME
+				echo 'WORKSPACE is: ' + env.WORKSPACE
+				echo 'NODE_HOME is: ' + env.NODE_HOME
+				echo 'PATH is: ' + env.PATH
+				echo 'HOME is: ' + env.HOME
+				echo 'PWD is: ' + env.PWD
+				echo 'JENKINS_HOME is: ' + env.JENKINS_HOME
+				echo 'JENKINS_URL is: ' + env.JENKINS_URL
+				echo 'JENKINS_SERVER_COOKIE is: ' + env.JENKINS_SERVER_COOKIE
+				echo '$env.BUILD_TAG is: ' + env.BUILD_TAG
+				echo '$env.BUILD_URL is: ' + env.BUILD_URL
+				echo '$env.JOB_URL is: ' + env.JOB_URL
             // Add your build steps here
             }
         }
