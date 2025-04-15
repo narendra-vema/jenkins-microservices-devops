@@ -7,13 +7,19 @@ pipeline {
 	// 		// args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount the Docker socket for Docker-in-Docker
 	// 	}
 	// }
+	environment {
+		// Define environment variables here
+		dockerHome = tool "myDocker" // Use the Docker tool defined in Jenkins
+		mavenHome = tool "myMaven" // Use the Maven tool defined in Jenkins
+		PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}" // Add Docker and Maven to the PATH
+	}
     // Define the pipeline stages
     stages {
         stage('Build') {
             steps {
                 //echo 'Building...'
-				//sh "mvn --version" // Print Maven version
-				//sh "node --version" // Print Node.js version
+				sh "mvn --version" // Print Maven version
+				sh "node --version" // Print Node.js version
 				echo 'Building...'
 				echo '$PATH'
 				echo 'BUILD_NUMBER is: ' + env.BUILD_NUMBER
