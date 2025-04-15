@@ -1,4 +1,4 @@
-node {
+pipeline {
 	agent any
 	// Define the pipeline stages
 	stages {
