@@ -15,7 +15,7 @@ pipeline {
 	}
     // Define the pipeline stages
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
                 //echo 'Building...'
 				sh "mvn --version" // Print Maven version
@@ -39,10 +39,17 @@ pipeline {
             // Add your build steps here
             }
         }
+		stage('Build') {
+			steps {
+                 sh "mvn clean compile" // Build the project using Maven
+			// Add your build steps here
+			}
+		}
 
         stage('Test') {
             steps {
-                echo 'Testing...'
+                echo 'mvn test...'
+				sh "mvn test" // Run unit tests using Maven
             // Add your test steps here
             }
         }
