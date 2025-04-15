@@ -68,7 +68,7 @@ pipeline {
 			   script {
 				// sh "mvn package -Dmaven.test.skip=true" // Package the application using Maven, skipping tests
  				  sh "mvn package -DskipTests" // Package the application using Maven, skipping tests
-				   def image = docker.build("narendra230/currency-exchange-devops:${env.BUILD_ID}", "-f Dockerfile .") // Build a Docker image with a specific tag
+				   image = docker.build("narendra230/currency-exchange-devops:${env.BUILD_ID}", "-f Dockerfile .") // Build a Docker image with a specific tag
 				   echo "Docker image built: ${image}"
 			   }							
 			}
@@ -78,7 +78,10 @@ pipeline {
 				echo 'Pushing Docker image...'
 				docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') { // Authenticate with Docker Hub
 					//sh "docker push narendra230/currency-exchange-devops:${env.BUILD_ID}" // Push the Docker image to Docker Hub
-				    docker.image("narendra230/currency-exchange-devops:${env.BUILD_ID}").push() // Push the Docker image to Docker Hub
+				    //docker.image("narendra230/currency-exchange-devops:${env.BUILD_ID}").push() // Push the Docker image to Docker Hub
+		 			image.push() // Push the Docker image to Docker Hub	
+					image.push('latest') // Push the Docker image with the 'latest' tag
+					echo "Docker image pushed: ${image}"	
 				}
 			}
 		}
