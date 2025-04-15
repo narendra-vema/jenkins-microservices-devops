@@ -2,7 +2,8 @@ pipeline {
     //agent any
 	agent {
 		docker {
-			image 'maven:3.6.3-jdk-8' // Use a Docker image with Maven and JDK 8
+			//image 'maven:3.6.3-jdk-8' // Use a Docker image with Maven and JDK 8
+			image 'node:14' // Use a Docker image with Node.js 14
 			// args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount the Docker socket for Docker-in-Docker
 		}
 	}
